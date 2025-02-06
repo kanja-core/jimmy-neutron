@@ -1,0 +1,13 @@
+{
+    "dockerfile_lines": [
+        "COPY app/pdf/sp/cnd_fazenda.pdf /app/pdf/test_cert.pdf"
+    ],
+    "graphs": {
+      "simple_graph": "./simple.py:graph"
+    },
+    "env": ".env",
+    "python_version": "3.11",
+    "dependencies": [
+      "."
+    ]
+  }

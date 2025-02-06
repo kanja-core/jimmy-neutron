@@ -1,0 +1,110 @@
+# ---------------------------
+# Python bytecode
+# ---------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---------------------------
+# Distribution / packaging
+# ---------------------------
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# If you use setuptools
+*.egg
+*.egg-info/
+.eggs/
+
+# If you use wheel
+*.whl
+
+# ---------------------------
+# Environments
+# ---------------------------
+# Virtualenv or venv
+.venv/
+venv/
+ENV/
+env/
+env.nosync
+env.*    # Sometimes env directories have suffix (like env.dev)
+.venv.*
+venv.*
+
+# Pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# ---------------------------
+# Project settings / logs
+# ---------------------------
+*.log
+*.pid
+*.seed
+*.coverage
+.coverage.*
+.coverage
+pytestdebug.log
+
+# ---------------------------
+# Jupyter notebooks
+# ---------------------------
+.ipynb_checkpoints/
+
+# ---------------------------
+# IDE / Editor-specific
+# ---------------------------
+# VSCode
+.vscode/
+# PyCharm
+.idea/
+# Spyder
+.spyproject/
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+# ---------------------------
+# OS-specific
+# ---------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------
+# Production environment files
+# ---------------------------
+# Typically secret or machine-specific configuration
+.env
+env.nosync
+.env.*
+.envrc
+
+# ---------------------------
+# Miscellaneous
+# ---------------------------
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
+*.orig
+
+# Optional: If you use coverage reports:
+htmlcov/
+
+# Optional: If you use MyPy or static analysis:
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Optional: If you store local test data in a folder:
+local_data/
+
+# Optional: If you use test or debugging builds:
+.tox/
+.cache/
