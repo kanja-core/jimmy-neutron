@@ -1,10 +1,8 @@
-# from typing import List
-# from pydantic import BaseModel
-from typing import List, Generic, Type
-from ...typeAliases import LLM, LLMInput, T_PYDANTYC, T, LLMPrompt
+from typing import List, Type
+from ...typeAliases import LLM, LLMPrompt
 
 
-class Retriever(Generic[T]):
+class Retriever[T]:
     """
     A base retriever that uses a generic LLM.
     """
@@ -27,17 +25,17 @@ class RetrieverText(Retriever[str]):
         return self.llm.invoke(prompt)  # type: ignore
 
 
-class RetrieverStructured(Generic[T_PYDANTYC], Retriever[T_PYDANTYC]):
+class RetrieverStructured[T](Retriever[T]):
     """
     A specialized retriever that uses a structured LLM and returns a Pydantic model.
     """
 
-    def __init__(self, llm: LLM, schema: Type[T_PYDANTYC]) -> None:
+    def __init__(self, llm: LLM, schema: Type[T]) -> None:
         structured_llm = llm.with_structured_output(schema=schema)
         super().__init__(structured_llm)
         self.schema = schema
 
-    def exec(self, prompt: List[LLMPrompt]) -> T_PYDANTYC:
+    def exec(self, prompt: List[LLMPrompt]) -> T:
         """Calls the structured LLM and returns a parsed Pydantic model."""
         model: T_PYDANTYC = self.llm.invoke(prompt)  # type: ignore
         return model

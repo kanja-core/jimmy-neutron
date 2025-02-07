@@ -1,12 +1,7 @@
-from typing import Any, List, Callable, Generic, Type
-from ..parser.main import Parser
+from typing import Any, List, Callable, Type
 from ..parser.factory import ParserFactory
-from ..retriever.main import Retriever
 from ..retriever.factory import RetrieverFactory
 from .types import (
-    TInput,
-    TOutput,
-    T,
     NodeParserInput,
     NodeRetrieverInput,
     NodePassInOutput,
@@ -24,7 +19,7 @@ class NodeParserFactory:
         return NodeParser(ParserFactory.picture(), name, prev)
 
 
-class NodeRetrieverFactory(Generic[TOutput]):
+class NodeRetrieverFactory[TOutput]:
     @staticmethod
     def id(
         name: str, prev: List[Node[Any, NodeRetrieverInput]]
@@ -39,7 +34,7 @@ class NodeRetrieverFactory(Generic[TOutput]):
         return NodeRetriever[TOutput](RetrieverFactory.tax_certificate(), name, prev)
 
 
-class NodeMapperFactory(Generic[TInput, TOutput]):
+class NodeMapperFactory[TInput, TOutput]:
     @staticmethod
     def get(
         name: str,
@@ -50,7 +45,7 @@ class NodeMapperFactory(Generic[TInput, TOutput]):
         return NodeMapper(name, prev, fn, input_type)
 
 
-class NodeValidatorFactory(Generic[TInput]):
+class NodeValidatorFactory[TInput]:
     @staticmethod
     def get(
         name: str,
@@ -61,7 +56,7 @@ class NodeValidatorFactory(Generic[TInput]):
         return NodeValidator(name, prev, fn, input_type)
 
 
-class NodePassFactory(Generic[T]):
+class NodePassFactory[T]:
     @staticmethod
     def get(name: str, prev: List[Node[Any, NodePassInOutput[T]]]) -> NodePass[T]:
         return NodePass[T](name, prev)

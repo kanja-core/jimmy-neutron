@@ -10,8 +10,8 @@ class DataclassProtocol(Protocol):
     __dataclass_fields__: dict  # minimal: just needs to exist
 
 
-TInputDataclass = TypeVar("TInputDataclass", bound=DataclassProtocol)
-TOutputDataclass = TypeVar("TOutputDataclass", bound=DataclassProtocol)
+TInput = TypeVar("TInput", bound=DataclassProtocol)
+TOutput = TypeVar("TOutput", bound=DataclassProtocol)
 
 
 @dataclass
