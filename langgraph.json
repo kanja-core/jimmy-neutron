@@ -3,10 +3,11 @@
         "COPY app/pdf/sp/cnd_fazenda.pdf /app/pdf/test_cert.pdf"
     ],
     "graphs": {
-      "simple_graph": "./simple.py:graph"
+      "parse_retrieve": "./parse_retrieve.test.py:graph",
+      "fetch": "./fetch.test.py:graph"
     },
     "env": ".env",
-    "python_version": "3.11",
+    "python_version": "3.12",
     "dependencies": [
       "."
     ]

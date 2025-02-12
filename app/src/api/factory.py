@@ -1,6 +1,9 @@
 from pydantic import SecretStr
+
+from .mock.main import MockAPI
 from .main import API
-from ...settings.main import settings
+from .protocol import APIProtocol
+from ..settings.main import settings
 
 
 class APIFactory:
@@ -19,7 +22,7 @@ class APIFactory:
         )
 
     @staticmethod
-    def escavador() -> API:
+    def escavador() -> APIProtocol:
         return API(
             settings.escavador_api_base,
             settings.escavador_api_key,
@@ -27,4 +30,10 @@ class APIFactory:
                 "X-Requested-With": "XMLHttpRequest",
                 "Accept": "application/json",
             },
+        )
+
+    @staticmethod
+    def escavador_mock() -> APIProtocol:
+        return MockAPI(
+            settings.escavador_api_base, log_file="app/src/api/mock/lawsuits.json"
         )

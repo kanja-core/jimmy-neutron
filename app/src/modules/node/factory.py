@@ -1,12 +1,22 @@
 from typing import Any, List, Callable, Type
 from ..parser.factory import ParserFactory
 from ..retriever.factory import RetrieverFactory
+from ..fetcher.factory import FetcherFactory
 from .types import (
     NodeParserInput,
     NodeRetrieverInput,
     NodePassInOutput,
+    NodeFetcherInput,
 )
-from .main import Node, NodeParser, NodeMapper, NodeValidator, NodeRetriever, NodePass
+from .main import (
+    Node,
+    NodeFetcher,
+    NodeParser,
+    NodeMapper,
+    NodeValidator,
+    NodeRetriever,
+    NodePass,
+)
 
 
 class NodeParserFactory:
@@ -58,5 +68,15 @@ class NodeValidatorFactory[TInput]:
 
 class NodePassFactory[T]:
     @staticmethod
-    def get(name: str, prev: List[Node[Any, NodePassInOutput[T]]]) -> NodePass[T]:
-        return NodePass[T](name, prev)
+    def get(
+        name: str,
+        prev: List[Node[Any, NodePassInOutput[T]]],
+        input_type: Type[T],
+    ) -> NodePass[T]:
+        return NodePass[T](name, prev, input_type)
+
+
+class NodeFetcherFactory[T]:
+    @staticmethod
+    def lawsuits(name: str, prev: List[Node[Any, NodeFetcherInput]]) -> NodeFetcher[T]:
+        return NodeFetcher[T](fetcher=FetcherFactory.lawsuits(), name=name, prev=prev)

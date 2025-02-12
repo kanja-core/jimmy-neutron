@@ -1,20 +1,39 @@
-from dataclasses import dataclass
 from typing import Optional
+from pydantic import BaseModel
 
 
-@dataclass
-class Case:
+class Case(BaseModel):
     cnj: str
     amount: Optional[float] = None
     area: Optional[str] = None
 
 
-@dataclass
-class Involved:
+class Involved(BaseModel):
     name: str
     type: str
 
 
-@dataclass
 class Lawsuits(Involved):
     items: list[Case]
+
+
+# from dataclasses import dataclass
+# from typing import Optional
+
+
+# @dataclass
+# class Case:
+#     cnj: str
+#     amount: Optional[float] = None
+#     area: Optional[str] = None
+
+
+# @dataclass
+# class Involved:
+#     name: str
+#     type: str
+
+
+# @dataclass
+# class Lawsuits(Involved):
+#     items: list[Case]

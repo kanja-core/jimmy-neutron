@@ -8,7 +8,7 @@ from ..node.types import (
     NodeRetrieverInput,
     NodeValidatorOutput,
 )
-from typing import Set
+from typing import Set, TypeVar
 
 
 # class GeneralState(

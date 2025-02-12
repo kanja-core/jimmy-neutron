@@ -1,6 +1,6 @@
 from typing import Callable, Type
 from .types import Lawsuits
-from ..api.main import API
+from ...api.protocol import APIProtocol
 
 
 class Fetcher[T]:
@@ -13,7 +13,7 @@ class Fetcher[T]:
         fn (Callable): The function to map the response to the output.
     """
 
-    def __init__(self, endpoint: str, api: API, fn: Callable):
+    def __init__(self, endpoint: str, api: APIProtocol, fn: Callable):
         self.endpoint = endpoint
         self.api = api
         self.fn = fn
@@ -33,12 +33,19 @@ class FetcherLawsuits[T](Fetcher[Lawsuits]):
         cpf_cnpj (str): The ID of the person/company in lawsuit. Either CPF or CNPJ.
     """
 
-    def __init__(self, endpoint: str, api: API, fn: Callable[[T], Lawsuits]):
+    def __init__(
+        self,
+        endpoint: str,
+        api: APIProtocol,
+        fn: Callable[[T], Lawsuits],
+        api_response_type: Type[T],
+    ):
         """"""
+        self.api_response_type = api_response_type
         super().__init__(endpoint, api, fn)
 
     def exec(self, params: dict) -> Lawsuits:
-        res = self.api.request(
-            "GET", self.endpoint, params=params, response_type=Type[T]
+        res = self.api.get(
+            self.endpoint, params=params, response_type=self.api_response_type
         )
         return self.fn(res)

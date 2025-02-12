@@ -5,6 +5,8 @@ from .types import Case, Lawsuits
 class LawsuitFetcherMapper:
     @staticmethod
     def escavador(input: LawsuitsEscavador) -> Lawsuits:
+        print(input.envolvido_encontrado)
+        print(type(input.envolvido_encontrado))
         return Lawsuits(
             name=input.envolvido_encontrado.tipo_pessoa,
             type=input.envolvido_encontrado.tipo_pessoa,

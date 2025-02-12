@@ -2,7 +2,7 @@ from .types import Lawsuits
 from .main import Fetcher, FetcherLawsuits
 from .mapper import LawsuitFetcherMapper
 from .extra.typesEscavador import LawsuitsEscavador
-from ..api.factory import APIFactory
+from ...api.factory import APIFactory
 
 
 class FetcherFactory:
@@ -15,6 +15,7 @@ class FetcherFactory:
         """Creates a new Fetcher instance with the provided configuration."""
         return FetcherLawsuits[LawsuitsEscavador](
             "envolvido/processos",
-            APIFactory.escavador(),
+            APIFactory.escavador_mock(),  # injected mock
             LawsuitFetcherMapper.escavador,
+            api_response_type=LawsuitsEscavador,
         )
