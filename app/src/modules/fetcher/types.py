@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Union, List, Dict, Optional
 from pydantic import BaseModel
 
 
@@ -15,6 +15,22 @@ class Involved(BaseModel):
 
 class Lawsuits(Involved):
     items: list[Case]
+
+
+class APIGatewayProxyResultBody(BaseModel):
+    file: str
+    request_id: str | int
+
+
+class APIGatewayProxyResult(BaseModel):
+    statusCode: int
+    headers: Optional[Dict[str, Union[bool, int, str]]] = None
+    multiValueHeaders: Optional[Dict[str, List[Union[bool, int, str]]]] = None
+    body: str
+    isBase64Encoded: Optional[bool] = None
+
+
+# class
 
 
 # from dataclasses import dataclass

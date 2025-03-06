@@ -43,6 +43,13 @@ class NodeRetrieverFactory[TOutput]:
     ) -> NodeRetriever[TOutput]:
         return NodeRetriever[TOutput](RetrieverFactory.tax_certificate(), name, prev)
 
+    @staticmethod
+    def botActions(
+        name: str,
+        prev: List[Node[Any, NodeRetrieverInput]],
+    ) -> NodeRetriever[TOutput]:
+        return NodeRetriever[TOutput](RetrieverFactory.botActions(), name, prev)
+
 
 class NodeMapperFactory[TInput, TOutput]:
     @staticmethod
@@ -80,3 +87,10 @@ class NodeFetcherFactory[T]:
     @staticmethod
     def lawsuits(name: str, prev: List[Node[Any, NodeFetcherInput]]) -> NodeFetcher[T]:
         return NodeFetcher[T](fetcher=FetcherFactory.lawsuits(), name=name, prev=prev)
+
+    @staticmethod
+    def aws_lambda(
+        name: str,
+        prev: List[Node[Any, NodeFetcherInput]],
+    ) -> NodeFetcher[T]:
+        return NodeFetcher[T](fetcher=FetcherFactory.aws_lambda(), name=name, prev=prev)

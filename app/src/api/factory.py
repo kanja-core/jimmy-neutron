@@ -22,6 +22,13 @@ class APIFactory:
         )
 
     @staticmethod
+    def bot() -> APIProtocol:
+        return API(
+            settings.bot_api_base,
+            # settings.bot_api_key,
+        )
+
+    @staticmethod
     def escavador() -> APIProtocol:
         return API(
             settings.escavador_api_base,
