@@ -1,10 +1,12 @@
 {
     "dockerfile_lines": [
-        "COPY app/pdf/sp/cnd_fazenda.pdf /app/pdf/test_cert.pdf"
+        "COPY file.pdf /tmp/file.pdf",
+        "COPY files/ /tmp/files/"
     ],
     "graphs": {
-      "parse_retrieve": "./parse_retrieve.test.py:graph",
-      "fetch": "./fetch.test.py:graph"
+      "parse_retrieve": "./test/parse_retrieve.test.py:graph",
+      "fetch": "./test/fetch.test.py:graph",
+      "lambda": "./test/lambda.test.py:graph"
     },
     "env": ".env",
     "python_version": "3.12",
